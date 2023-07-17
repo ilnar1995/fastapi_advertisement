@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = {extras = ["all"], version = "*"}
+alembic = "*"
+uvicorn = "*"
+passlib = "*"
+asyncpg = "*"
+pytest = "*"
+pytest-asyncio = "*"
+ormar = {extras = ["postgresql"], version = "*"}
+fastapi-users = {version = "==9.3", extras = ["ormar"]}
+aioredis = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
