@@ -2,18 +2,18 @@ from typing import Optional
 
 from fastapi_users import FastAPIUsers
 from fastapi import Request
+
+from src.config import SECRET_AUTH
 from src.user.models import user_db
 from src.user.schemas import User, UserDB, UserCreate, UserUpdate
 from fastapi_users.authentication import AuthenticationBackend, BearerTransport, JWTStrategy
 from fastapi_users import BaseUserManager
 
-SECRET = "Sdasdad3w#RmF34ef43%E5&*6DV%$5DSvBF*fY9V(y*&VNFdfBU(t8DnfDS"
-
 
 class UserManager(BaseUserManager[UserCreate, UserDB]):
     user_db_model = UserDB
-    reset_password_token_secret = SECRET
-    verification_token_secret = SECRET
+    reset_password_token_secret = SECRET_AUTH
+    verification_token_secret = SECRET_AUTH
 
     async def on_after_request_verify(
             self, user: User, token: str, request: Optional[Request] = None
@@ -41,7 +41,7 @@ bearer_transport = BearerTransport(tokenUrl="auth/jwt/login")
 
 
 def get_jwt_strategy() -> JWTStrategy:
-    return JWTStrategy(secret=SECRET, lifetime_seconds=6600)
+    return JWTStrategy(secret=SECRET_AUTH, lifetime_seconds=6600)
 
 
 auth_backend = AuthenticationBackend(
