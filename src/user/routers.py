@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 
 from src.permission import superuser_access
 from src.user import schemas, models
-from src.user.auth import auth_backend, fastapi_users, SECRET, current_active_user
+from src.user.auth import auth_backend, fastapi_users, SECRET_AUTH, current_active_user
 
 auth_router = APIRouter()
 
